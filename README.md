@@ -63,7 +63,7 @@ npm run build
 
 ## 🌐 Live Demo
 
-🚀 [Try Fix My Words Now](https://fixmywords.com)
+🚀 [Try Fix My Words Now](https://textutilis.iniranjan.com/)
 
 ---
 
@@ -99,9 +99,9 @@ Want to contribute? Follow these steps:
 ## 📬 Contact & Support
 
 💬 Have questions? Reach out!
-📧 Email: [your@email.com](mailto:your@email.com)
-🐦 Twitter: [@yourhandle](https://twitter.com/yourhandle)
-💼 LinkedIn: [Your Name](https://linkedin.com/in/yourname)
+📧 Email: [iniranjachaudhari@gmail.com](mailto:iniranjanchaudhari@gmail.com)
+🐦 Twitter: [@imniranjan](https://x.com/imniranjann)
+💼 LinkedIn: [Visit LinkedIN](https://www.linkedin.com/in/niranjan-chaudhari-26157b194/)
 
 ---
 
