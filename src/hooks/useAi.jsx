@@ -1,4 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 
 export default function RootLayout({ children }) {
   return (
@@ -12,7 +13,7 @@ export default function RootLayout({ children }) {
   );
 }
 
-const genAI = new GoogleGenerativeAI("AIzaSyDBdyikXoEWSK8PXi7o3YJTNf92vfXeqXQ");
+const genAI = new GoogleGenerativeAI(`${apiKey}`);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 const generateAIResponse = async (text, promptTemplate) => {
