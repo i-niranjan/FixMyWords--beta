@@ -31,7 +31,7 @@ export default function Navbar() {
   };
   return (
     <>
-      <nav className=" sticky  w-full z-20 top-0 start-0 border-b border-gray-200 ">
+      <nav className=" sticky  w-full z-20 top-0 start-0 border-b border-gray-200  backdrop-blur-sm ">
         <div className="max-w-screen flex flex-wrap items-center justify-between  p-4">
           <a
             href="/"
