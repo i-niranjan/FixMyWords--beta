@@ -2,6 +2,7 @@ import { Text } from "lucide-react";
 import React, { useState } from "react";
 import LoginForm from "@/components/Auth/LoginForm";
 import RegisterForm from "@/components/Auth/RegisterForm";
+
 export default function Auth() {
   const [authState, setAuthState] = useState("login");
   return (

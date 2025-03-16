@@ -13,6 +13,7 @@ function App() {
 
   return (
     <>
+      <Toaster />
       <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
         <TextProvider>
           <BrowserRouter>
@@ -21,7 +22,6 @@ function App() {
               <Route path="/" element={<Dashboard />} />
             </Routes>
           </BrowserRouter>
-          <Toaster />
         </TextProvider>
       </ThemeProvider>
     </>
