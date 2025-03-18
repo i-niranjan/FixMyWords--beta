@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { register } from "@/service/authService";
 import { zodResolver } from "@hookform/resolvers/zod";
 import registerSchema from "@/lib/schemas/registerSchema";
@@ -27,6 +27,7 @@ import { Input } from "@/components/ui/input";
 
 export default function RegisterForm({ setAuthState }) {
   const navigate = useNavigate();
+
   const registerform = useForm({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -46,7 +47,10 @@ export default function RegisterForm({ setAuthState }) {
 
       navigate("/");
     } catch (error) {
-      toast("Error while registering the user : ", error.message);
+      const errorMessage =
+        error.response?.data?.message || "Something went wrong";
+
+      toast.error(`🚨 Error: ${errorMessage}`);
     }
   };
 

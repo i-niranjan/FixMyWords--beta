@@ -16,16 +16,27 @@ export const register = async ({ name, email, password }) => {
     toast(response.data.message);
     return response.data;
   } catch (error) {
-    const errorMessage =
-      error.response?.data?.message || "Something went wrong";
-    toast(errorMessage);
+    throw error;
   }
 };
 
 export const login = async (email, password) => {
-  const response = await axios.post(`${API_URL}/login`, { email, password });
-  console.log("logged in");
-  return response.data;
+  console.log("triggered");
+
+  try {
+    const response = await axios.post(`${API_URL}/login`, {
+      email,
+      password,
+    });
+    console.log();
+
+    localStorage.setItem("token", response.data.token);
+    localStorage.setItem("name", response.data.user.name);
+    toast(response.data.message);
+    return response.data;
+  } catch (error) {
+    toast(errorMessage);
+  }
 };
 
 export const logout = () => {

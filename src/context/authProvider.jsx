@@ -1,3 +1,5 @@
+// this context is not being used as i found it useless for this short app, we are directly calling service for reg and login.
+
 import { createContext, useState, useEffect } from "react";
 import { getToken, getUser, logout } from "../service/authService";
 

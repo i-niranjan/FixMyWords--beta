@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router";
 import { Share, Moon, Sun, X } from "lucide-react";
 import {
   Drawer,
@@ -42,7 +43,15 @@ export default function Navbar() {
             </span>
           </a>
           <div className="flex md:order-2 gap-x-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            <Button>Download</Button>
+            <NavLink
+              className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-2 rounded-sm cursor-pointer shadow-xl
+  hover:scale-105 hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-500
+  transition-transform duration-500 ease-in-out flex items-center gap-2"
+              to="/auth"
+            >
+              Login / Register 🚀
+            </NavLink>
+
             <Button variant="outline" size="icon">
               <Share />
             </Button>
