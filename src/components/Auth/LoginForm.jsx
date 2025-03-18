@@ -20,7 +20,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { login } from "@/service/authService";
-
+import { toast } from "sonner";
+import { useNavigate } from "react-router";
 export default function LoginForm({ setAuthState }) {
   const loginform = useForm({
     resolver: zodResolver(loginSchema),
@@ -29,17 +30,18 @@ export default function LoginForm({ setAuthState }) {
       password: "",
     },
   });
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    console.log("clicked");
-
     try {
-      await login({
+      const response = await login({
         email: data.email,
         password: data.password,
       });
+      toast.success(response.message);
+      navigate("/");
     } catch (error) {
-      toast("Error while login the user : ", error.message);
+      toast(error.response?.data?.message);
     }
   };
   return (

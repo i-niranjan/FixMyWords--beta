@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router";
-import { Share, Moon, Sun, X } from "lucide-react";
+import { Share, Moon, Sun, X, LogOut } from "lucide-react";
 import {
   Drawer,
   DrawerClose,
@@ -11,25 +11,24 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-
+import { getUser } from "@/service/authService";
 import { useTheme } from "@/components/theme-provider";
 import {
   NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuList,
   NavigationMenuLink,
-  NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 import About from "./About";
+import AuthProvider from "@/context/authProvider";
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
+  const { user, logoutUser } = useContext(AuthProvider);
   return (
     <>
       <nav className=" sticky  w-full z-20 top-0 start-0 border-b border-gray-200  backdrop-blur-sm ">
@@ -44,12 +43,20 @@ export default function Navbar() {
           </a>
           <div className="flex md:order-2 gap-x-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <NavLink
-              className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-2 rounded-sm cursor-pointer shadow-xl
-  hover:scale-105 hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-500
+              className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-2 py-1 rounded-sm cursor-pointer shadow-xl
+  hover:scale-105 hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-500 text-sm
   transition-transform duration-500 ease-in-out flex items-center gap-2"
-              to="/auth"
+              to={user ? "#" : "/auth"}
+              onClick={user ? logoutUser : null}
             >
-              Login / Register 🚀
+              {user ? (
+                <>
+                  Howdy, {user.length > 10 ? `${user.slice(0, 9)}...` : user}{" "}
+                  <LogOut size={14} />
+                </>
+              ) : (
+                "Login / Register 🚀"
+              )}
             </NavLink>
 
             <Button variant="outline" size="icon">

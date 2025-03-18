@@ -7,6 +7,7 @@ import { TextProvider } from "./context/TextContext";
 import { ThemeProvider } from "./components/theme-provider";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Auth from "./pages/Auth";
+import { AuthProvider } from "./context/authProvider";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -16,12 +17,14 @@ function App() {
       <Toaster />
       <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
         <TextProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/auth" element={<Auth />} />
-              <Route path="/" element={<Dashboard />} />
-            </Routes>
-          </BrowserRouter>
+          <AuthProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/auth" element={<Auth />} />
+                <Route path="/" element={<Dashboard />} />
+              </Routes>
+            </BrowserRouter>
+          </AuthProvider>
         </TextProvider>
       </ThemeProvider>
     </>

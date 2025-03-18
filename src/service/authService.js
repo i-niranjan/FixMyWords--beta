@@ -28,14 +28,13 @@ export const login = async (email, password) => {
       email,
       password,
     });
-    console.log();
 
     localStorage.setItem("token", response.data.token);
     localStorage.setItem("name", response.data.user.name);
-    toast(response.data.message);
+
     return response.data;
   } catch (error) {
-    toast(errorMessage);
+    throw error;
   }
 };
 
@@ -46,4 +45,4 @@ export const logout = () => {
 
 export const getToken = () => localStorage.getItem("token");
 
-export const getUser = () => JSON.parse(localStorage.getItem("user"));
+export const getUser = () => localStorage.getItem("name");

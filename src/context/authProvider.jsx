@@ -12,9 +12,9 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (token) {
       localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("name", user);
     }
-  }, [token, user]);
+  }, [token]);
 
   const loginUser = (userData, jwtToken) => {
     setUser(userData);
