@@ -11,6 +11,12 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { getUser } from "@/service/authService";
 import { useTheme } from "@/components/theme-provider";
 import {
@@ -22,12 +28,16 @@ import {
 import { Button } from "@/components/ui/button";
 import About from "./About";
 import AuthProvider from "@/context/authProvider";
+import { TextContext } from "@/context/TextContext";
 
 export default function Navbar() {
+  const { openShareDialog } = useContext(TextContext);
+
   const { theme, setTheme } = useTheme();
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
+
   const { user, logoutUser } = useContext(AuthProvider);
   return (
     <>
@@ -59,7 +69,12 @@ export default function Navbar() {
               )}
             </NavLink>
 
-            <Button variant="outline" size="icon">
+            <Button
+              className="cursor-pointer"
+              variant="outline"
+              size="icon"
+              onClick={openShareDialog}
+            >
               <Share />
             </Button>
             <Button
@@ -108,9 +123,18 @@ export default function Navbar() {
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuLink className="cursor-pointer">
-                    Features
-                  </NavigationMenuLink>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button className="opacity-75" variant="ghost">
+                          Features
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Coming Soon</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <Drawer>

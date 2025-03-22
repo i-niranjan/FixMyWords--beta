@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import ShareDialog from "@/components/ShareDialog";
 import Sidebar from "@/components/Sidebar";
 import TextArea from "@/components/TextArea";
 import React from "react";
@@ -15,6 +16,7 @@ export default function Dashboard() {
         <div className="w-[30%]">
           <Sidebar />
         </div>
+        <ShareDialog />
       </div>
       <Footer />
     </>
