@@ -13,8 +13,11 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       localStorage.setItem("token", token);
       localStorage.setItem("name", user);
+    } else {
+      localStorage.removeItem("token");
+      localStorage.removeItem("name");
     }
-  }, [token]);
+  }, [token, user]);
 
   const loginUser = (userData, jwtToken) => {
     setUser(userData);

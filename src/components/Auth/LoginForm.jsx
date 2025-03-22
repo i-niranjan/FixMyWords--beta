@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import loginSchema from "@/lib/schemas/loginSchema";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
@@ -22,7 +22,9 @@ import { Input } from "@/components/ui/input";
 import { login } from "@/service/authService";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
+import AuthContext from "@/context/authProvider";
 export default function LoginForm({ setAuthState }) {
+  const { loginUser } = useContext(AuthContext);
   const loginform = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -38,6 +40,7 @@ export default function LoginForm({ setAuthState }) {
         email: data.email,
         password: data.password,
       });
+      loginUser(response.user.name, response.token);
       toast.success(response.message);
       navigate("/");
     } catch (error) {

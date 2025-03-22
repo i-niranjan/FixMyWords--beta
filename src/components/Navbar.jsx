@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router";
-import { Share, Moon, Sun, X, LogOut } from "lucide-react";
+import { Share, Moon, Sun, X, LogOut, Menu, LogIn } from "lucide-react";
 import {
   Drawer,
   DrawerClose,
@@ -17,7 +17,14 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { getUser } from "@/service/authService";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useTheme } from "@/components/theme-provider";
 import {
   NavigationMenu,
@@ -27,7 +34,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 import About from "./About";
-import AuthProvider from "@/context/authProvider";
+import AuthContext from "@/context/authProvider";
 import { TextContext } from "@/context/TextContext";
 
 export default function Navbar() {
@@ -38,20 +45,76 @@ export default function Navbar() {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
-  const { user, logoutUser } = useContext(AuthProvider);
+  const { user, logoutUser } = useContext(AuthContext);
+
   return (
     <>
       <nav className=" sticky  w-full z-20 top-0 start-0 border-b border-gray-200  backdrop-blur-sm ">
-        <div className="max-w-screen flex flex-wrap items-center justify-between  p-4">
-          <a
-            href="/"
-            className="flex items-center space-x-3 rtl:space-x-reverse"
-          >
-            <span className="self-center text-2xl font-semibold whitespace-nowrap ">
-              Quillbot Who?
-            </span>
-          </a>
-          <div className="flex md:order-2 gap-x-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+        <div className="max-w-screen flex  flex-wrap items-center justify-between p-4">
+          <DropdownMenu>
+            <DropdownMenuTrigger className="md:hidden">
+              <Menu />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem>Billing</DropdownMenuItem>
+              <DropdownMenuItem>Team</DropdownMenuItem>
+              <DropdownMenuItem>Subscription</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <div>
+            <a
+              href="/"
+              className="flex  items-center space-x-3 rtl:space-x-reverse"
+            >
+              <span className="self-center text-lg font-semibold whitespace-nowrap ">
+                Quillbot Who?
+              </span>
+            </a>
+          </div>
+          <div className="md:hidden flex gap-2">
+            <Button
+              className="cursor-pointer"
+              variant="outline"
+              size="icon"
+              onClick={toggleTheme}
+            >
+              {theme === "dark" ? (
+                <Sun className="h-[1.2rem] w-[1.2rem]" />
+              ) : (
+                <Moon className="h-[1.2rem] w-[1.2rem]" />
+              )}
+              <span className="sr-only">Toggle theme</span>
+            </Button>
+            <Button
+              className="cursor-pointer"
+              variant="outline"
+              size="icon"
+              onClick={openShareDialog}
+            >
+              <Share />
+            </Button>
+            <NavLink
+              className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-2 py-0 rounded-sm cursor-pointer shadow-xl
+  hover:scale-105 hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-500 text-sm
+  transition-transform duration-500 ease-in-out flex items-center "
+              to={user ? "#" : "/auth"}
+              onClick={user ? logoutUser : null}
+            >
+              {user ? (
+                <>
+                  <LogOut size={18} />
+                </>
+              ) : (
+                <LogIn size={18} />
+              )}
+            </NavLink>
+          </div>
+
+          <div className="md:flex hidden  md:order-2 gap-x-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <NavLink
               className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-2 py-1 rounded-sm cursor-pointer shadow-xl
   hover:scale-105 hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-500 text-sm
@@ -90,31 +153,6 @@ export default function Navbar() {
               )}
               <span className="sr-only">Toggle theme</span>
             </Button>
-
-            <button
-              data-collapse-toggle="navbar-sticky"
-              type="button"
-              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-              aria-controls="navbar-sticky"
-              aria-expanded="false"
-            >
-              <span className="sr-only">Open main menu</span>
-              <svg
-                className="w-5 h-5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 17 14"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M1 1h15M1 7h15M1 13h15"
-                />
-              </svg>
-            </button>
           </div>
           <div
             className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 border-1 rounded-[6px]"

@@ -9,11 +9,11 @@ export default function Dashboard() {
   return (
     <>
       <Navbar />
-      <div className="flex p-4 w-[100%] gap-x-2">
-        <div className="w-[70%] ">
+      <div className="flex flex-col md:flex-row p-4 w-[100%] gap-2">
+        <div className="md:w-[70%] ">
           <TextArea />
         </div>
-        <div className="w-[30%]">
+        <div className="md:w-[30%]">
           <Sidebar />
         </div>
         <ShareDialog />

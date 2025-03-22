@@ -218,7 +218,7 @@ export default function Sidebar() {
             >
               Gimme the TL;DR
             </Button>
-            <p className="text-[14px] text-[#738196] self-center">
+            <p className="text-[0.7rem] md:text-[1rem] text-[#738196] self-center">
               "Skip to the good part." 🎶
             </p>
           </div>

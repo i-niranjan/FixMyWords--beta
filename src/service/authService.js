@@ -21,8 +21,6 @@ export const register = async ({ name, email, password }) => {
 };
 
 export const login = async (email, password) => {
-  console.log("triggered");
-
   try {
     const response = await axios.post(`${API_URL}/login`, {
       email,
