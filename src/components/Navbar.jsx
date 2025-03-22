@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router";
-import { Share, Moon, Sun, X, LogOut, Menu, LogIn } from "lucide-react";
+import { Share, Moon, Sun, X, LogOut, Menu, LogIn, User } from "lucide-react";
 import {
   Drawer,
   DrawerClose,
@@ -52,16 +52,15 @@ export default function Navbar() {
       <nav className=" sticky  w-full z-20 top-0 start-0 border-b border-gray-200  backdrop-blur-sm ">
         <div className="max-w-screen flex  flex-wrap items-center justify-between p-4">
           <DropdownMenu>
-            <DropdownMenuTrigger className="md:hidden">
+            <DropdownMenuTrigger className="md:hidden ">
               <Menu />
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Billing</DropdownMenuItem>
-              <DropdownMenuItem>Team</DropdownMenuItem>
-              <DropdownMenuItem>Subscription</DropdownMenuItem>
+            <DropdownMenuContent className="m-2">
+              <DropdownMenuItem>
+                <a href="https://github.com/i-niranjan/FixMyWords--beta">
+                  Github Repo
+                </a>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 
@@ -71,7 +70,7 @@ export default function Navbar() {
               className="flex  items-center space-x-3 rtl:space-x-reverse"
             >
               <span className="self-center text-lg font-semibold whitespace-nowrap ">
-                Quillbot Who?
+                FixMyWords
               </span>
             </a>
           </div>
@@ -109,7 +108,7 @@ export default function Navbar() {
                   <LogOut size={18} />
                 </>
               ) : (
-                <LogIn size={18} />
+                <User size={18} />
               )}
             </NavLink>
           </div>

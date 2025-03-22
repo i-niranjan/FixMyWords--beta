@@ -23,14 +23,14 @@ export default function ShareDialog() {
   return (
     <>
       <Dialog open={isShareOpen} onOpenChange={closeShareDialog}>
-        <DialogContent className="w-[25%]">
+        <DialogContent className="w-full md:w-[25%]">
           <DialogHeader>
             <DialogTitle>Share This Website</DialogTitle>
             <DialogDescription>
               🚀 Share this website with your friends
             </DialogDescription>
           </DialogHeader>
-          <div className="mt-2 flex gap-2">
+          <div className="mt-2 flex gap-2 justify-center">
             <Button
               size="icon"
               className="cursor-pointer"
