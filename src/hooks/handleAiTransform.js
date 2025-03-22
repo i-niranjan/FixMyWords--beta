@@ -1,4 +1,5 @@
 import { toast } from "sonner"; // Import toast
+
 export const handleAITransform = async (
   useAi,
   text,
@@ -18,7 +19,7 @@ export const handleAITransform = async (
       duration: 3000, // 3 seconds
     });
   } catch (error) {
-    console.error("AI Processing Error:", error);
+    console.error("AI Processing Error:", error.message);
     toast.error("Error ❌", {
       description: "Something went wrong while processing. Try again!",
     });

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Dashboard from "./pages/dashboard";
+import Dashboard from "./pages/Dashboard";
 import { TextProvider } from "./context/TextContext";
 import { ThemeProvider } from "./components/theme-provider";
 import { BrowserRouter, Route, Routes } from "react-router";

@@ -152,8 +152,15 @@ export default function Navbar() {
                   </Drawer>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuLink className="cursor-pointer">
-                    Github Repo
+                  <NavigationMenuLink asChild>
+                    <a
+                      className="cursor-pointer"
+                      href="https://github.com/i-niranjan/FixMyWords--beta"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Contribute
+                    </a>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
               </NavigationMenuList>

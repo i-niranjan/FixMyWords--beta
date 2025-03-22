@@ -30,6 +30,7 @@ import {
   toProfessional,
   toFriendly,
   toPersuasive,
+  extractKeywords,
 } from "@/hooks/useAi";
 
 export default function Sidebar() {
@@ -52,6 +53,10 @@ export default function Sidebar() {
       handleAITransform(toFriendly, text, setText, setLoading, loading);
     } else if (value === "persuasive") {
       handleAITransform(toPersuasive, text, setText, setLoading, loading);
+    } else if (value === "summarizeText") {
+      handleAITransform(summarizeText, text, setText, setLoading, loading);
+    } else if (value === "extractKeywords") {
+      handleAITransform(extractKeywords, text, setText, setLoading, loading);
     }
   };
 
@@ -209,7 +214,9 @@ export default function Sidebar() {
           <div className="flex p-3 mt-5 border-2 rounded-[6px] flex-wrap gap-2">
             <Button
               className="cursor-pointer"
-              onClick={() => handleAITransform(summarizeText, text, setText)}
+              onClick={() =>
+                handleAITransform(summarizeText, text, setText, setLoading)
+              }
             >
               Gimme the TL;DR
             </Button>
@@ -241,7 +248,13 @@ export default function Sidebar() {
           </div>
           <div className="mt-3">
             <h2 className="text-[20px]">Key Snatcher 🐈‍⬛</h2>
-            <Button className="cursor-pointer mt-2" variant="secondary">
+            <Button
+              className="cursor-pointer mt-2"
+              variant="secondary"
+              onClick={() =>
+                handleAITransform(extractKeywords, text, setText, setLoading)
+              }
+            >
               Extract Keywords ✅
             </Button>
           </div>

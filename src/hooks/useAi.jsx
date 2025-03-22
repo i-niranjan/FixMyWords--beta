@@ -44,6 +44,8 @@ const toCreative = async (text) => {
 };
 
 const summarizeText = async (text) => {
+  console.log("called");
+
   return await generateAIResponse(
     text,
     "Summarize the following text in a concise and clear manner, keeping the key points intact. Provide a TL;DR version in one or two sentences:\n\n'{text}'"
@@ -70,6 +72,12 @@ const toPersuasive = async (text) => {
     "Rewrite the following text in a persuasive tone. Use strong arguments, compelling language, and a confident style to convince the reader:\n\n'{text}'"
   );
 };
+const extractKeywords = async (text) => {
+  return await generateAIResponse(
+    text,
+    "Extract the key terms from the given text and categorize them based on relevance (e.g., 🔍 SEO, 📢 Marketing, 💻 Technical, etc.). Present the results in a structured format using emojis as bullet points for each category:\n\n'{text}'"
+  );
+};
 
 export {
   checkGrammar,
@@ -80,4 +88,5 @@ export {
   toProfessional,
   toFriendly,
   toPersuasive,
+  extractKeywords,
 };
