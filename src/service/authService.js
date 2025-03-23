@@ -2,7 +2,8 @@ import axios from "axios";
 import React from "react";
 
 import { toast } from "sonner";
-const API_URL = "http://localhost:1002/api/users";
+const API_URL =
+  "https://fixmywords-backend-production.up.railway.app/api/users/";
 
 export const register = async ({ name, email, password }) => {
   try {
@@ -32,6 +33,7 @@ export const login = async (email, password) => {
 
     return response.data;
   } catch (error) {
+    console.log(error.message);
     throw error;
   }
 };
